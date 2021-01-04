@@ -13,14 +13,14 @@
 </div>
 
 <div class="wrap">
-    <h2>Update All Reading Time</h2>
+    <h2>Remove All Reading Time</h2>
     <p>
-        Update all reading times on all relevant posts
+        Remove all reading times on all relevant posts
     </p>
     <div class="message">
         
     </div>
-    <button id="update_all_reading_time_ym" class="button button-primary">Clear Previous calculations</button>
+    <button id="remove_all_reading_time_ym" class="button button-primary">Clear Previous calculations</button>
     <span class="loading">
         <div class="loader"></div>
     </span>

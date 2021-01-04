@@ -26,12 +26,12 @@ function update_option_update_all_reading_time_ym($old_value, $value) {
 
 add_action('update_option_reading_time_ym_settings', 'update_option_update_all_reading_time_ym', 10, 2);
 
-function wp_ajax_update_all_reading_time_ym() {
+function wp_ajax_remove_all_reading_time_ym() {
 
-    ReadingTime::updateAll();
+    ReadingTime::removeAll();
 }
 
-add_action('wp_ajax_update_all_reading_time_ym', 'wp_ajax_update_all_reading_time_ym', 10, 0);
+add_action('wp_ajax_remove_all_reading_time_ym', 'wp_ajax_remove_all_reading_time_ym', 10, 0);
 
 function reading_time_ym_shortcode($atts) {
 

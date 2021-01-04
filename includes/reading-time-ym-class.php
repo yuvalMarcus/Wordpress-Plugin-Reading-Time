@@ -46,6 +46,9 @@ class ReadingTime {
             case 'round_down_in_half_minute_steps':
                 $readingTime = round($result, 0, PHP_ROUND_HALF_DOWN);
                 break;
+            default:
+                $readingTime = ceil($result);
+                break;
         }
 
         $this->readingTime = $readingTime;

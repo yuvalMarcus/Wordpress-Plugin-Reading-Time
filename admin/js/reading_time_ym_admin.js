@@ -1,16 +1,16 @@
 
 jQuery(document).ready(function () {
-    jQuery('#update_all_reading_time_ym').on('click', function () {
-        jQuery('#update_all_reading_time_ym').prop('disabled', true);
+    jQuery('#remove_all_reading_time_ym').on('click', function () {
+        jQuery('#remove_all_reading_time_ym').prop('disabled', true);
         jQuery('.loading').addClass('fadein');
         jQuery.post(ajaxurl, {
-            'action': 'update_all_reading_time_ym',
+            'action': 'remove_all_reading_time_ym',
         }, function (response) {
             jQuery('.loading').removeClass('fadein');
-            jQuery('.message').html('<div class="alert alert-success fadein"><p><strong>Reading Time Data Is Update.</strong></p></div>');
+            jQuery('.message').html('<div class="alert alert-success fadein"><p><strong>All Reading Time Data Is Remove.</strong></p></div>');
             setTimeout(function () {
                 jQuery('.message').html('');
-                jQuery('#update_all_reading_time_ym').prop('disabled', false);
+                jQuery('#remove_all_reading_time_ym').prop('disabled', false);
             }, 2000);
         });
     });
