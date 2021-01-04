@@ -18,7 +18,7 @@ function the_reading_time() {
         set_transient('post_reading_time_ym_' . $post->ID, $value, 3600);
     }
 
-    echo $value . ' Seconds';
+    echo esc_html($value . ' Seconds', 'reading-time-ym');
     return true;
 }
 
@@ -38,5 +38,5 @@ function get_reading_time() {
         $value = $obj->readingTime;
         set_transient('post_reading_time_ym_' . $post->ID, $value, 3600);
     }
-    return $value;
+    return esc_html($value, 'reading-time-ym');
 }

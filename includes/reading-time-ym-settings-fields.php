@@ -135,7 +135,7 @@ function reading_time_ym_settings_round_type_callback($args) {
 
     $select = 'round_up';
     if (isset($options['round_type'])) {
-        $select = esc_html($options['round_type']);
+        $select = $options['round_type'];
     }
 
     $html = '<select id="reading_time_ym_settings_round_type" name="reading_time_ym_settings[round_type]">';
@@ -157,7 +157,7 @@ function reading_time_ym_settings_label_shortcode_callback() {
 
     $labelshortcode = 'Reading Time';
     if (isset($options['label_shortcode'])) {
-        $labelshortcode = esc_html($options['label_shortcode']);
+        $labelshortcode = $options['label_shortcode'];
     }
 
     echo '<input type="text" id="reading_time_ym_settings_label_shortcode" name="reading_time_ym_settings[label_shortcode]" value="' . $labelshortcode . '" />';

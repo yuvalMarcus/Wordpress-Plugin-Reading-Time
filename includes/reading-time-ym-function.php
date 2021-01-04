@@ -6,7 +6,7 @@ function get_reading_time_ym_settings() {
 
     if ($options === false) {
 
-        $options = get_option('reading_time_ym_settings');
+        $options = esc_html(get_option('reading_time_ym_settings'));
         set_transient('reading_time_ym_settings', $options, 3600);
     }
 

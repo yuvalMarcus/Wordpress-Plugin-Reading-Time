@@ -32,10 +32,7 @@ class WPC_CLI {
                 $options['round_type'] = ROUNDING_BEHAVIOR;
                 set_transient('reading_time_ym_settings', $options, 3600);
                 $this->clear_cache([], []);
-                //self::clear_cache();
             }
-
-            //$reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE = isset(reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE) ? reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE : '' ;
         }
     }
 

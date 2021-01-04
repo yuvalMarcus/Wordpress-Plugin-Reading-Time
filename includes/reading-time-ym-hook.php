@@ -39,7 +39,7 @@ function reading_time_ym_shortcode($atts) {
 
     $labelshortcode = 'Reading Time';
     if (isset($options['label_shortcode'])) {
-        $labelshortcode = esc_html($options['label_shortcode']);
+        $labelshortcode = $options['label_shortcode'];
     }
 
     $post = get_post();
@@ -60,7 +60,7 @@ function reading_time_ym_shortcode($atts) {
 
     $className = apply_filters('shortcode_reading_time_class', 'shortcode_reading_time_ym');
         
-    $className = esc_html_e($className, 'reading-time-ym');
+    $className = esc_html($className, 'reading-time-ym');
     
     $html = '<p class="' . $className . '">';
     $html .= '<label>' . $labelshortcode . '</label>';
