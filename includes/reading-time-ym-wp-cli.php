@@ -5,7 +5,7 @@ class WPC_CLI {
     public function config($args, $assoc_args) {
 
         $type = $args[0];
-        $options = get_reading_time_settings();
+        $options = get_reading_time_ym_settings();
 
         if ($type === 'get') {
 
@@ -15,9 +15,9 @@ class WPC_CLI {
             );
             $formatter = new \WP_CLI\Formatter($assoc_args, $display_fields);
             $formatter->display_items([
-                ['option' => 'No. of Words Per Minute', 'value' => $options['numberofwords']],
-                ['option' => 'Supported Post Types', 'value' => json_encode($options['posttypes'])],
-                ['option' => 'Rounding behavior', 'value' => $options['roundtype']]
+                ['option' => 'No. of Words Per Minute', 'value' => $options['number_of_words']],
+                ['option' => 'Supported Post Types', 'value' => json_encode($options['post_types'])],
+                ['option' => 'Rounding behavior', 'value' => ReadingTime::$roundTypes[$options['round_type']]]
             ]);
         }
 
@@ -27,20 +27,21 @@ class WPC_CLI {
                     constant('SUPPORTED_POST_TYPES') &&
                     constant('ROUNDING_BEHAVIOR')) {
 
-                $options['numberofwords'] = READING_TIME_NUMBER_OF_WORDS_PER_MINUTE;
-                $options['posttypes'] = json_encode(SUPPORTED_POST_TYPES);
-                $options['roundtype'] = ROUNDING_BEHAVIOR;
-                set_transient('reading_time_settings', $options, 3600);
-                $this->clear_cache();
+                $options['number_of_words'] = READING_TIME_NUMBER_OF_WORDS_PER_MINUTE;
+                $options['post_types'] = SUPPORTED_POST_TYPES;
+                $options['round_type'] = ROUNDING_BEHAVIOR;
+                set_transient('reading_time_ym_settings', $options, 3600);
+                $this->clear_cache([], []);
+                //self::clear_cache();
             }
 
-            //$READING_TIME_NUMBER_OF_WORDS_PER_MINUTE = isset(READING_TIME_NUMBER_OF_WORDS_PER_MINUTE) ? READING_TIME_NUMBER_OF_WORDS_PER_MINUTE : '' ;
+            //$reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE = isset(reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE) ? reading_time_ym_NUMBER_OF_WORDS_PER_MINUTE : '' ;
         }
     }
 
     public function clear_cache($args, $assoc_args) {
 
-        $options = get_reading_time_settings();
+        $options = get_reading_time_ym_settings();
 
         $posttypes = [];
         if (isset($options['post_types'])) {
@@ -88,17 +89,17 @@ class WPC_CLI {
             return;
         }
 
-        $value = get_transient('post_reading_time_' . $post->ID);
+        $value = get_transient('post_reading_time_ym_' . $post->ID);
 
         if ($value === false) {
             $obj = new ReadingTime($post->ID);
             $obj->calculated();
             $obj->update();
             $value = $obj->readingTime;
-            set_transient('post_reading_time_' . $post->ID, $value, 3600);
+            set_transient('post_reading_time_ym_' . $post->ID, $value, 3600);
         }
 
-        WP_CLI::line('Reading Time For Post ID = ' . $post_id . ' Is ' . $value);
+        WP_CLI::line('Reading Time For Post ID = ' . $post_id . ' Is ' . $value . ' In Seconds');
     }
 
 }

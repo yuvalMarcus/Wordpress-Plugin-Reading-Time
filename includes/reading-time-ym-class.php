@@ -16,7 +16,7 @@ class ReadingTime {
 
     public function __construct($post_ID = 0) {
 
-        $option = get_reading_time_settings();
+        $option = get_reading_time_ym_settings();
         $post = get_post($post_ID);
 
         if ($post) {
@@ -64,14 +64,14 @@ class ReadingTime {
     public function update() {
 
         if ($this->post) {
-            set_transient('post_reading_time_' . $this->post->ID, $this->readingTime, 3600);
-            //update_post_meta($this->post->ID, 'reading_time', $this->readingTime);
+            set_transient('post_reading_time_ym_' . $this->post->ID, $this->readingTime, 3600);
+            //update_post_meta($this->post->ID, 'reading_time_ym', $this->readingTime);
         }
     }
 
     public static function updateAll() {
 
-        $options = get_reading_time_settings();
+        $options = get_reading_time_ym_settings();
 
         $posttypes = [];
         if (isset($options['post_types'])) {
@@ -102,7 +102,7 @@ class ReadingTime {
 
     public static function removeAll() {
 
-        $options = get_reading_time_settings();
+        $options = get_reading_time_ym_settings();
 
         $posttypes = [];
         if (isset($options['post_types'])) {
@@ -123,7 +123,7 @@ class ReadingTime {
         if ($result->post_count) {
             foreach ($result->posts as $post) {
                 if (!empty($post) && in_post_types_allowed($post->post_type)) {
-                    delete_transient('post_reading_time_' . $this->post->ID);
+                    delete_transient('post_reading_time_ym_' . $this->post->ID);
                 }
             }
         }
