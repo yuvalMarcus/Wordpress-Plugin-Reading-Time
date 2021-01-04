@@ -65,6 +65,7 @@ function reading_time_ym_activation() {
         $options['round_type'] = 'round_up';
         add_option('reading_time_ym_settings', $options);
         set_transient('reading_time_ym_settings', $options, 3600);
+        ReadingTime::updateAll();
     }
 }
 

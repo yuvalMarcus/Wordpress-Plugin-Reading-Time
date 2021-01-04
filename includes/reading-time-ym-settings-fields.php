@@ -11,7 +11,7 @@ function reading_time_ym_settings() {
             // Unique identifier for the section
             'reading-time-ym_settings_section',
             // Section Title
-            __('Reading Time Plugin Settings Section', 'reading-time-ym'),
+            __('Reading Time Plugin Settings', 'reading-time-ym'),
             // Callback for an optional description
             'reading_time_ym_settings_section_callback',
             // Admin page to add section to
@@ -91,8 +91,6 @@ function reading_time_ym_settings() {
 add_action('admin_init', 'reading_time_ym_settings');
 
 function reading_time_ym_settings_section_callback() {
-
-    esc_html_e('Plugin settings section description', 'reading-time-ym');
 }
 
 function reading_time_ym_settings_number_of_words_callback() {

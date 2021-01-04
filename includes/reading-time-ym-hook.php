@@ -60,6 +60,8 @@ function reading_time_ym_shortcode($atts) {
 
     $className = apply_filters('shortcode_reading_time_class', 'shortcode_reading_time_ym');
         
+    $className = esc_html_e($className, 'reading-time-ym');
+    
     $html = '<p class="' . $className . '">';
     $html .= '<label>' . $labelshortcode . '</label>';
     $html .= '<span>';
