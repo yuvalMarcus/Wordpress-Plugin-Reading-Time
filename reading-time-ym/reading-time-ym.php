@@ -75,6 +75,7 @@ function reading_time_ym_uninstall() {
 
     delete_transient('reading_time_ym_settings');
     delete_option('reading_time_ym_settings');
+    ReadingTime::removeAll();
 }
 
 register_uninstall_hook(__FILE__, 'reading_time_ym_uninstall');

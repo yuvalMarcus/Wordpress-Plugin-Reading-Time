@@ -105,31 +105,15 @@ class ReadingTime {
 
     public static function removeAll() {
 
-        $options = get_reading_time_ym_settings();
+        global $wpdb;
 
-        $posttypes = [];
-        if (isset($options['post_types'])) {
-            $posttypes = $options['post_types'];
-        }
+        $sql = "
+            DELETE 
+            FROM {$wpdb->options}
+            WHERE option_name like '\_transient\_post_reading_time_ym\_%'
+            OR option_name like '\_transient\_timeout\_post_reading_time_ym\_%'";
 
-        if (count($posttypes) === 0) {
-            return;
-        }
-
-        $args = array(
-            'post_type' => $posttypes,
-            'orderby' => 'ID',
-            'posts_per_page' => -1,
-            'post_status' => 'publish'
-        );
-        $result = new WP_Query($args);
-        if ($result->post_count) {
-            foreach ($result->posts as $post) {
-                if (!empty($post) && in_post_types_allowed($post->post_type)) {
-                    delete_transient('post_reading_time_ym_' . $this->post->ID);
-                }
-            }
-        }
+        $wpdb->query($sql);
     }
 
 }
